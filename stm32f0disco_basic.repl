@@ -1,0 +1,25 @@
+cpu: CPU.CortexM @ sysbus
+    cpuType: "cortex-m0"
+    nvic: nvic
+
+sram: Memory.MappedMemory @ sysbus 0x20000000
+    size: 0x2000
+
+flash: Memory.MappedMemory @ sysbus 0x8000000
+    size: 0x10000
+
+rcc: Python.PythonPeripheral @ sysbus 0x40021000
+    size: 0x400
+    initable: true
+    filename: "scripts/pydev/rolling-bit.py"
+
+nvic: IRQControllers.NVIC @ sysbus 0xe000e000
+    IRQ -> cpu@0
+
+usart1: UART.STM32F7_USART @ sysbus 0x40013800
+    frequency: 200000000
+    IRQ -> nvic@27
+
+usart2: UART.STM32F7_USART @ sysbus 0x40004400
+    frequency: 200000000
+    IRQ -> nvic@28

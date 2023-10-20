@@ -1,0 +1,9 @@
+:name: STM32F0Discovery
+:description: This script creates a machine and loads the stm32f0disco platform
+
+:just to type less
+using sysbus
+
+:create machine and load platform
+mach create "stm32f0_mach"
+machine LoadPlatformDescription @platforms/boards/stm32f0disco.repl

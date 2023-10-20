@@ -1,0 +1,22 @@
+:name: STM32F0Discovery
+:description: This script runs a test example in the STM32F0Discovery
+
+:just to type less
+using sysbus
+
+:create machine and load platform
+mach create "STM32F0Disco"
+machine LoadPlatformDescription @stm32f0_disco.repl
+
+:load binary (using relative path)
+sysbus LoadELF @.pio/build/disco_f051r8_renode/firmware.elf
+
+:show usart1 default analyzer
+showAnalyzer usart1
+
+:create socket for usart1 so that we can interact with it from the host
+emulation CreateServerSocketTerminal 3456 "term"
+connector Connect usart1 term
+
+:start simulation
+start
