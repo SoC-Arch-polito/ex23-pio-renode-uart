@@ -11,6 +11,15 @@ The target is the **STM32F0 discovery**.
  - One for the real hardware upload and debug
 
 
+# Zephyr version.
+The example has two releases.
+ - V1.0.0 which supports version 2.7 of zephyr.
+ - V2.0.0 which supports version 3.4 of zephyr.
+
+I suggest to use the version V2.0.0
+
+The example is inspired by this [zephyr post](https://www.zephyrproject.org/developing-zephyr-rtos-embedded-applications-on-platformio-and-simulating-on-antmicro-renode/), for the version V1.0.0, which supports the version 2.7 of zephyr. It has then been adapted to support version 3.4 of zephyr.
+
 
 ## STM32F0 and renode
 
@@ -27,9 +36,9 @@ The application simply reads lines from an UART, and echo the lines back to the 
 
 As the usart1 is not connected by default on the real hardware of the stm32f0disco board, we are using usart2. To make zephyr use usart2 as the console and shell-uart, we use a dts overlay. See file `./zephyr/dts_overlay.dts` and `./zephyr/CMkaeList.txt`
 
-The example is inspired by this [zephyr post](https://www.zephyrproject.org/developing-zephyr-rtos-embedded-applications-on-platformio-and-simulating-on-antmicro-renode/).
-
 For testing purposes, the app opens an analyzer for the uart, and creates a socket in the port **3456**. From the host it is possible to access the uart by connecting to the port with:
+
+
 
 ```bash
 $ telnet localhost 3456
