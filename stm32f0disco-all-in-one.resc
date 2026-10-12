@@ -11,12 +11,12 @@ machine LoadPlatformDescription @stm32f0_disco.repl
 :load binary (using relative path)
 sysbus LoadELF @.pio/build/disco_f051r8_renode/firmware.elf
 
-:show usart1 default analyzer
-showAnalyzer usart1
+:show usart2 default analyzer
+showAnalyzer usart2
 
-:create socket for usart1 so that we can interact with it from the host
+:create socket for usart2 so that we can interact with it from the host
 emulation CreateServerSocketTerminal 3456 "term"
-connector Connect usart1 term
+connector Connect usart2 term
 
 :start simulation
 start
